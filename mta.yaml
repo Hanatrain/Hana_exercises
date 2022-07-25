@@ -1,5 +1,5 @@
 _schema-version: "2.1"
-ID: POAnalysis
+ID: HANA_Exercises
 version: 0.0.1
 modules:
 - name: db
