@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" id="DCV_Products" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="DCV_Products"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MD.Products">
+    <resourceUri>MD.Products</resourceUri>
+  </DataSource>
+  <DataSource id="Util.Texts">
+    <resourceUri>Util.Texts</resourceUri>
+  </DataSource>
+  <DataSource id="Product_Desc$$$$Util.Texts$$">
+    <resourceUri>Util.Texts</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="Projection_1">
+    <viewAttributes>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="TYPECODE"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="NAMEID"/>
+      <viewAttribute id="DESCID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="SUPPLIER_PARTNERID"/>
+      <viewAttribute id="TAXTARIFFCODE"/>
+      <viewAttribute id="QUANTITYUNIT"/>
+      <viewAttribute id="WEIGHTMEASURE"/>
+      <viewAttribute id="WEIGHTUNIT"/>
+      <viewAttribute id="WIDTH"/>
+      <viewAttribute id="DEPTH"/>
+      <viewAttribute id="HEIGHT"/>
+      <viewAttribute id="DIMENSIONUNIT"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MD.Products">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUPPLIER_PARTNERID" source="SUPPLIER.PARTNERID"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Product_Name" cardinality="C1_1" joinType="textTable" languageColumn="LANGUAGE">
+    <viewAttributes>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="TYPECODE"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="ProductName"/>
+      <viewAttribute id="DESCID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="SUPPLIER_PARTNERID"/>
+      <viewAttribute id="TAXTARIFFCODE"/>
+      <viewAttribute id="QUANTITYUNIT"/>
+      <viewAttribute id="WEIGHTMEASURE"/>
+      <viewAttribute id="WEIGHTUNIT"/>
+      <viewAttribute id="WIDTH"/>
+      <viewAttribute id="DEPTH"/>
+      <viewAttribute id="HEIGHT"/>
+      <viewAttribute id="DIMENSIONUNIT"/>
+      <viewAttribute hidden="true" id="JOIN$NAMEID$TEXTID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Projection_1">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPECODE" source="TYPECODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DESCID" source="DESCID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUPPLIER_PARTNERID" source="SUPPLIER_PARTNERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXTARIFFCODE" source="TAXTARIFFCODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEIGHTMEASURE" source="WEIGHTMEASURE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEIGHTUNIT" source="WEIGHTUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WIDTH" source="WIDTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPTH" source="DEPTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HEIGHT" source="HEIGHT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DIMENSIONUNIT" source="DIMENSIONUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NAMEID$TEXTID" source="NAMEID"/>
+    </input>
+    <input node="Util.Texts">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductName" source="TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$NAMEID$TEXTID" source="TEXTID"/>
+    </input>
+    <joinAttribute name="JOIN$NAMEID$TEXTID"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:JoinView" id="Product_Desc" cardinality="C1_1" joinType="textTable" languageColumn="LANGUAGE">
+    <viewAttributes>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="ProductDesc"/>
+      <viewAttribute id="ProductName"/>
+      <viewAttribute id="TYPECODE"/>
+      <viewAttribute id="CATEGORY"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="SUPPLIER_PARTNERID"/>
+      <viewAttribute id="TAXTARIFFCODE"/>
+      <viewAttribute id="QUANTITYUNIT"/>
+      <viewAttribute id="WEIGHTMEASURE"/>
+      <viewAttribute id="WEIGHTUNIT"/>
+      <viewAttribute id="WIDTH"/>
+      <viewAttribute id="DEPTH"/>
+      <viewAttribute id="HEIGHT"/>
+      <viewAttribute id="DIMENSIONUNIT"/>
+      <viewAttribute hidden="true" id="JOIN$DESCID$TEXTID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="Product_Name">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TYPECODE" source="TYPECODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CATEGORY" source="CATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SUPPLIER_PARTNERID" source="SUPPLIER_PARTNERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXTARIFFCODE" source="TAXTARIFFCODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEIGHTMEASURE" source="WEIGHTMEASURE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEIGHTUNIT" source="WEIGHTUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WIDTH" source="WIDTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPTH" source="DEPTH"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HEIGHT" source="HEIGHT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DIMENSIONUNIT" source="DIMENSIONUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductName" source="ProductName"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DESCID$TEXTID" source="DESCID"/>
+    </input>
+    <input node="Product_Desc$$$$Util.Texts$$">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ProductDesc" source="TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$DESCID$TEXTID" source="TEXTID"/>
+    </input>
+    <joinAttribute name="JOIN$DESCID$TEXTID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Product_Desc">
+  <attributes>
+    <attribute id="PRODUCTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTID"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="PRODUCTID"/>
+    </attribute>
+    <attribute id="ProductDesc" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProductDesc"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="ProductDesc"/>
+    </attribute>
+    <attribute id="ProductName" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ProductName"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="ProductName"/>
+    </attribute>
+    <attribute id="TYPECODE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TYPECODE"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="TYPECODE"/>
+    </attribute>
+    <attribute id="CATEGORY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CATEGORY"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="CATEGORY"/>
+    </attribute>
+    <attribute id="CURRENCY" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="PRICE" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRICE"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="PRICE"/>
+    </attribute>
+    <attribute id="SUPPLIER_PARTNERID" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SUPPLIER_PARTNERID"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="SUPPLIER_PARTNERID"/>
+    </attribute>
+    <attribute id="TAXTARIFFCODE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TAXTARIFFCODE"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="TAXTARIFFCODE"/>
+    </attribute>
+    <attribute id="QUANTITYUNIT" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="QUANTITYUNIT"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="QUANTITYUNIT"/>
+    </attribute>
+    <attribute id="WEIGHTMEASURE" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEIGHTMEASURE"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="WEIGHTMEASURE"/>
+    </attribute>
+    <attribute id="WEIGHTUNIT" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WEIGHTUNIT"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="WEIGHTUNIT"/>
+    </attribute>
+    <attribute id="WIDTH" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="WIDTH"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="WIDTH"/>
+    </attribute>
+    <attribute id="DEPTH" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEPTH"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="DEPTH"/>
+    </attribute>
+    <attribute id="HEIGHT" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HEIGHT"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="HEIGHT"/>
+    </attribute>
+    <attribute id="DIMENSIONUNIT" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DIMENSIONUNIT"/>
+      <keyMapping columnObjectName="Product_Desc" columnName="DIMENSIONUNIT"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="141" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Projection_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="556"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Product_Name" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="396"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Projection_1" modelObjectNameSpace="Product_Name" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="209"/>
+    </shape>
+    <shape modelObjectName="Util.Texts" modelObjectNameSpace="Product_Name" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="166"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Product_Desc" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="236"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="Product_Name" modelObjectNameSpace="Product_Desc" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="209"/>
+    </shape>
+    <shape modelObjectName="Util.Texts" modelObjectNameSpace="Product_Desc" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="166"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,14 @@
+PROCEDURE "P_CALC_DATE"(
+    IN IP_FROM_CREATION_DATE STRING,
+    OUT CALCULATEDDATE STRING
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER 
+  --DEFAULT SCHEMA <default_schema_name>
+  READS SQL DATA AS 
+BEGIN 
+  /*************************************
+  Write your procedure logic
+  *************************************/
+  CALCULATEDDATE := add_days(:IP_FROM_CREATION_DATE, 7);
+END

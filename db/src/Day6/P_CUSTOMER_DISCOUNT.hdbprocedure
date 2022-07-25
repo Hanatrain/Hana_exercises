@@ -1,0 +1,29 @@
+PROCEDURE "P_CUSTOMER_DISCOUNT"
+	(
+		IN discount Decimal(10, 2),
+		OUT out_with_discount table
+		(
+		"PURCHASEORDERID" INTEGER,
+		"PRODUCTID" NVARCHAR(10),
+		"QUANTITY" DECIMAL(13,3),
+        "QUANTITYUNIT" NVARCHAR(3),
+        "CURRENCY" NVARCHAR(5),
+		"GROSSAMOUNT" DECIMAL(15,2),
+		"DISCOUNT_AMT" Decimal(10, 2),
+		"AMT_AFTER_DIS" Decimal(10, 2)
+		)
+	)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic 
+   *************************************/
+	out_with_discount = SELECT 
+	HEADER.PURCHASEORDERID, PRODUCT.PRODUCTID,QUANTITY,QUANTITYUNIT,CURRENCY,GROSSAMOUNT,
+	cast((GROSSAMOUNT * :discount) as Decimal(10, 2)) AS DISCOUNT_AMT,
+	GROSSAMOUNT - cast((GROSSAMOUNT * :discount) as Decimal(10, 2)) AS AMT_AFTER_DIS
+	FROM "PO.Item";
+END;

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="DCV_BP" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CVD_BusinessPartner"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="MD.BusinessPartner">
+    <resourceUri>MD.BusinessPartner</resourceUri>
+  </DataSource>
+  <DataSource id="MD.Contact">
+    <resourceUri>MD.Contact</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PARTNERID"/>
+      <viewAttribute id="COMPANYNAME"/>
+      <viewAttribute id="EMAIL_GUID"/>
+      <viewAttribute id="PHONE_GUID"/>
+      <viewAttribute id="FIRST_NAME"/>
+      <viewAttribute id="LAST_NAME"/>
+      <viewAttribute id="WEBADDRESS"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="MD.BusinessPartner">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNERID" source="PARTNERID"/>
+    
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMPANYNAME" source="COMPANYNAME"/>
+    </input>
+    <input node="MD.Contact">
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAIL_GUID" source="EMAIL_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PHONE_GUID" source="PHONE_GUID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="FIRST_NAME" source="FIRST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LAST_NAME" source="LAST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="WEBADDRESS" source="WEBADDRESS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNERID" source="PARTNER_GUID"/>
+    </input>
+    <joinAttribute name="PARTNERID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PARTNERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Partner ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNERID"/>
+    </attribute>
+    <attribute id="COMPANYNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Company Name"/>
+      <keyMapping columnObjectName="Join_1" columnName="COMPANYNAME"/>
+    </attribute>
+    <attribute id="EMAIL_GUID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Email Address"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMAIL_GUID"/>
+    </attribute>
+    <attribute id="PHONE_GUID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Phone Number"/>
+      <keyMapping columnObjectName="Join_1" columnName="PHONE_GUID"/>
+    </attribute>
+    <attribute id="FIRST_NAME" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="First Name"/>
+      <keyMapping columnObjectName="Join_1" columnName="FIRST_NAME"/>
+    </attribute>
+    <attribute id="LAST_NAME" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Name"/>
+      <keyMapping columnObjectName="Join_1" columnName="LAST_NAME"/>
+    </attribute>
+    <attribute id="WEBADDRESS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Web Site Address"/>
+      <keyMapping columnObjectName="Join_1" columnName="WEBADDRESS"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="216"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="MD.BusinessPartner" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="181"/>
+    </shape>
+    <shape modelObjectName="MD.Contact" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="171"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="CCV_Orders_Fulfillment" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CCV_Orders_Fulfillment"/>
+<localVariables>
+  <variable id="IP_FROM_CREATION_DATE" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties datatype="DATE" length="10" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+  <variable id="IP_TO_CREATION_DATE" parameter="true">
+    <descriptions defaultDescription=" "/>
+    <variableProperties mandatory="false" defaultValue="">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+      <derivationRule>
+        <resourceUri>P_CALC_DATE</resourceUri>
+        <variableMapping xsi:type="Variable:VariableMapping">
+          <targetVariable name="IP_FROM_CREATION_DATE"/>
+          <localVariable>IP_FROM_CREATION_DATE</localVariable>
+        </variableMapping>
+      </derivationRule>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources/>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="TF_NUM_DAYS_FULFILL">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <variableMapping xsi:type="Variable:VariableMapping">
+      <targetVariable name="IP_FROM_CREATION_DATE"/>
+      <localVariable>IP_FROM_CREATION_DATE</localVariable>
+    </variableMapping>
+    <variableMapping xsi:type="Variable:VariableMapping">
+      <targetVariable name="IP_TO_CREATION_DATE"/>
+      <localVariable>IP_TO_CREATION_DATE</localVariable>
+    </variableMapping>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="TableFunction_1">
+  <attributes>
+    <attribute id="PURCHASEORDERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PURCHASEORDERID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="PURCHASEORDERID"/>
+    </attribute>
+    <attribute id="PRODUCT_PRODUCTID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCT_PRODUCTID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="PRODUCT_PRODUCTID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDAT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="HISTORY_CREATEDAT"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="HISTORY_CREATEDAT"/>
+    </attribute>
+    <attribute id="DELIVERYDATE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELIVERYDATE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="DELIVERYDATE"/>
+    </attribute>
+    <attribute id="NUM_DAYS_FULFILL" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NUM_DAYS_FULFILL"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="NUM_DAYS_FULFILL"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSSAMOUNT" order="6" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GROSSAMOUNT"/>
+      <measureMapping columnObjectName="TableFunction_1" columnName="GROSSAMOUNT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="TableFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="233"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

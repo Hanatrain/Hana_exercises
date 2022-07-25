@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CCV_Orders" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CCV_Orders"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PO.Header">
+    <resourceUri>PO.Header</resourceUri>
+  </DataSource>
+  <DataSource id="PO.Item">
+    <resourceUri>PO.Item</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="PURCHASEORDERID" aggregationType="sum"/>
+      <viewAttribute id="HISTORY_CREATEDBY_EMPLOYEEID" aggregationType="sum"/>
+      <viewAttribute id="HISTORY_CREATEDAT"/>
+      <viewAttribute id="HISTORY_CHANGEDBY_EMPLOYEEID" aggregationType="sum"/>
+      <viewAttribute id="HISTORY_CHANGEDAT"/>
+      <viewAttribute id="PARTNER_PARTNERID" aggregationType="sum"/>
+      <viewAttribute id="LIFECYCLESTATUS"/>
+      <viewAttribute id="APPROVALSTATUS"/>
+      <viewAttribute id="CONFIRMSTATUS"/>
+      <viewAttribute id="ORDERINGSTATUS"/>
+      <viewAttribute id="INVOICINGSTATUS"/>
+      <viewAttribute id="PRODUCT_PRODUCTID"/>
+      <viewAttribute id="NOTEID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="NETAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="TAXAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="QUANTITY" aggregationType="sum"/>
+      <viewAttribute id="QUANTITYUNIT"/>
+      <viewAttribute id="DELIVERYDATE"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PO.Header">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PURCHASEORDERID" source="PURCHASEORDERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDBY_EMPLOYEEID" source="HISTORY.CREATEDBY.EMPLOYEEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CREATEDAT" source="HISTORY.CREATEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CHANGEDBY_EMPLOYEEID" source="HISTORY.CHANGEDBY.EMPLOYEEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="HISTORY_CHANGEDAT" source="HISTORY.CHANGEDAT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PARTNER_PARTNERID" source="PARTNER.PARTNERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="LIFECYCLESTATUS" source="LIFECYCLESTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="APPROVALSTATUS" source="APPROVALSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CONFIRMSTATUS" source="CONFIRMSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDERINGSTATUS" source="ORDERINGSTATUS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="INVOICINGSTATUS" source="INVOICINGSTATUS"/>
+    </input>
+    <input node="PO.Item">
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCT_PRODUCTID" source="PRODUCT.PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NOTEID" source="NOTEID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="NETAMOUNT" source="NETAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TAXAMOUNT" source="TAXAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITY" source="QUANTITY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="QUANTITYUNIT" source="QUANTITYUNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERYDATE" source="DELIVERYDATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PURCHASEORDERID" source="HEADER.PURCHASEORDERID"/>
+    </input>
+    <joinAttribute name="PURCHASEORDERID"/>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="PURCHASEORDERID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Purchase Order ID"/>
+      <keyMapping columnObjectName="Join_1" columnName="PURCHASEORDERID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDBY_EMPLOYEEID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created By"/>
+      <keyMapping columnObjectName="Join_1" columnName="HISTORY_CREATEDBY_EMPLOYEEID"/>
+    </attribute>
+    <attribute id="HISTORY_CREATEDAT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Created Date"/>
+      <keyMapping columnObjectName="Join_1" columnName="HISTORY_CREATEDAT"/>
+    </attribute>
+    <attribute id="HISTORY_CHANGEDBY_EMPLOYEEID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Updated By"/>
+      <keyMapping columnObjectName="Join_1" columnName="HISTORY_CHANGEDBY_EMPLOYEEID"/>
+    </attribute>
+    <attribute id="HISTORY_CHANGEDAT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Last Update Date"/>
+      <keyMapping columnObjectName="Join_1" columnName="HISTORY_CHANGEDAT"/>
+    </attribute>
+    <attribute id="PARTNER_PARTNERID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Partner Association"/>
+      <keyMapping columnObjectName="Join_1" columnName="PARTNER_PARTNERID"/>
+    </attribute>
+    <attribute id="LIFECYCLESTATUS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Lifecycle Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="LIFECYCLESTATUS"/>
+    </attribute>
+    <attribute id="APPROVALSTATUS" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Approval Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="APPROVALSTATUS"/>
+    </attribute>
+    <attribute id="CONFIRMSTATUS" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Confirmation Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="CONFIRMSTATUS"/>
+    </attribute>
+    <attribute id="ORDERINGSTATUS" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Ordering Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDERINGSTATUS"/>
+    </attribute>
+    <attribute id="INVOICINGSTATUS" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Invoicing Status"/>
+      <keyMapping columnObjectName="Join_1" columnName="INVOICINGSTATUS"/>
+    </attribute>
+    <attribute id="PRODUCT_PRODUCTID" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Product"/>
+      <keyMapping columnObjectName="Join_1" columnName="PRODUCT_PRODUCTID"/>
+    </attribute>
+    <attribute id="NOTEID" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Note"/>
+      <keyMapping columnObjectName="Join_1" columnName="NOTEID"/>
+    </attribute>
+    <attribute id="CURRENCY" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Currency"/>
+      <keyMapping columnObjectName="Join_1" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="QUANTITYUNIT" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Quantity Unit"/>
+      <keyMapping columnObjectName="Join_1" columnName="QUANTITYUNIT"/>
+    </attribute>
+    <attribute id="DELIVERYDATE" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="Delivery Date"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELIVERYDATE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSSAMOUNT" order="15" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Gross Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="GROSSAMOUNT"/>
+    </measure>
+    <measure id="NETAMOUNT" order="16" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Net Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="NETAMOUNT"/>
+    </measure>
+    <measure id="TAXAMOUNT" order="17" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Tax Amount"/>
+      <measureMapping columnObjectName="Join_1" columnName="TAXAMOUNT"/>
+    </measure>
+    <measure id="QUANTITY" order="18" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="Quantity"/>
+      <measureMapping columnObjectName="Join_1" columnName="QUANTITY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="212"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PO.Header" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="278"/>
+    </shape>
+    <shape modelObjectName="PO.Item" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="246"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

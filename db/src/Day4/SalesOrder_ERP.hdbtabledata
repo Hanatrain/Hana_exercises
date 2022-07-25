@@ -1,0 +1,26 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "SALESORDER_ERP",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "SalesOrder_ERP.csv",
+                "has_header": true
+            },
+            "import_settings": {
+            	"include_filter" : [ ],            
+                "import_columns": [
+                    "SALESORDERID",
+			"CURRENCY",
+			"GROSSAMOUNT",
+			"SOURCE",
+			"PRODUCTID",
+			"PRODUCTCATEGORY",
+			"SALESYEAR"
+		]
+            }
+        }
+	       
+    ]
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="CCV_SALES_Union" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" pruningTable="UNION_PRUNING">
+<descriptions defaultDescription="CCV_SALES_Union.hdbcalculationview"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="SALESORDER_ERP">
+    <resourceUri>SALESORDER_ERP</resourceUri>
+  </DataSource>
+  <DataSource id="SALES_DATA">
+    <resourceUri>SALES_DATA</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SALES_ERP">
+    <viewAttributes>
+      <viewAttribute id="SALESORDERID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT"/>
+      <viewAttribute id="SOURCE"/>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="PRODUCTCATEGORY"/>
+      <viewAttribute id="SALESYEAR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALESORDER_ERP"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="SALES_EXT">
+    <viewAttributes>
+      <viewAttribute id="SALESORDERID"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="AMOUNT"/>
+      <viewAttribute id="SOURCE"/>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="PRODUCTCATEGORY"/>
+      <viewAttribute id="SALESYEAR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALES_DATA"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:UnionView" id="ERP_UNION_EXT">
+    <viewAttributes>
+      <viewAttribute id="SALESORDERID" aggregationType="sum"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="GROSSAMOUNT" aggregationType="sum"/>
+      <viewAttribute id="SOURCE"/>
+      <viewAttribute id="PRODUCTID"/>
+      <viewAttribute id="PRODUCTCATEGORY"/>
+      <viewAttribute id="SALESYEAR" aggregationType="sum"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="SALES_ERP" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID" source="SALESORDERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="GROSSAMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTCATEGORY" source="PRODUCTCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESYEAR" source="SALESYEAR"/>
+    </input>
+    <input node="SALES_EXT" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESORDERID" source="SALESORDERID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="GROSSAMOUNT" source="AMOUNT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SOURCE" source="SOURCE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTID" source="PRODUCTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRODUCTCATEGORY" source="PRODUCTCATEGORY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SALESYEAR" source="SALESYEAR"/>
+    </input>
+  </calculationView>
+</calculationViews>
+<logicalModel id="ERP_UNION_EXT">
+  <attributes>
+    <attribute id="SALESORDERID" order="1">
+      <descriptions defaultDescription="SALESORDERID"/>
+      <keyMapping columnObjectName="ERP_UNION_EXT" columnName="SALESORDERID"/>
+    </attribute>
+    <attribute id="CURRENCY" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="ERP_UNION_EXT" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="SOURCE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SOURCE"/>
+      <keyMapping columnObjectName="ERP_UNION_EXT" columnName="SOURCE"/>
+    </attribute>
+    <attribute id="PRODUCTID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTID"/>
+      <keyMapping columnObjectName="ERP_UNION_EXT" columnName="PRODUCTID"/>
+    </attribute>
+    <attribute id="PRODUCTCATEGORY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PRODUCTCATEGORY"/>
+      <keyMapping columnObjectName="ERP_UNION_EXT" columnName="PRODUCTCATEGORY"/>
+    </attribute>
+    <attribute id="SALESYEAR" order="6">
+      <descriptions defaultDescription="SALESYEAR"/>
+      <keyMapping columnObjectName="ERP_UNION_EXT" columnName="SALESYEAR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="GROSSAMOUNT" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="GROSSAMOUNT"/>
+      <measureMapping columnObjectName="ERP_UNION_EXT" columnName="GROSSAMOUNT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="221" y="112"/>
+    
+      <rectangleSize width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="SALES_ERP" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="92" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="SALES_EXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="302" y="356"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="ERP_UNION_EXT" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="221" y="217"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

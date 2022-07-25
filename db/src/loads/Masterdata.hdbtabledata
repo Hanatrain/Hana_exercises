@@ -1,0 +1,54 @@
+{
+    "format_version": 1,
+    "imports": [
+        {
+            "target_table": "MD.Contact",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "Contact.csv",
+                "has_header": true,
+                "dialect": "HANA", 
+                "type_config": { 
+                    "delimiter": ","
+                }
+            },
+            "import_settings": {
+            	"include_filter" : [ ],            
+                "import_columns": [
+                    "PARTNER_GUID",
+					"EMAIL_GUID",
+					"PHONE_GUID",
+					"FIRST_NAME",
+					"LAST_NAME",
+					"WEBADDRESS"
+				]
+            }
+        },
+        {
+            "target_table": "MD.BusinessPartner",
+            "source_data": {
+                "data_type": "CSV",
+                "file_name": "BusinessPartner.csv",
+                "has_header": true,
+                "dialect": "HANA", 
+                "type_config": { 
+                    "delimiter": ","
+                }
+            },
+            "import_settings": {
+            	"include_filter" : [ ],            
+                "import_columns": [
+                    "PARTNERID",
+					"PARTNERROLE",
+					"EMAILADDRESS",
+					"PHONENUMBER",
+					"FAXNUMBER",
+					"WEBADDRESS",
+					"COMPANYNAME",
+					"LEGALFORM",
+					"CURRENCY"
+                ]
+            }
+        }        
+    ]
+}

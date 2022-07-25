@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" xmlns:Variable="http://www.sap.com/ndb/BiModelVariable.ecore" id="CCV_FIND_EMPLOYEES" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true">
+<descriptions defaultDescription="CCV_FIND_EMPLOYEES"/>
+<localVariables>
+  <variable id="IP_LASTNAME_FILTER" parameter="true">
+    <descriptions defaultDescription="LASTNAME_FILTER"/>
+    <variableProperties datatype="NVARCHAR" length="40" mandatory="true">
+      <valueDomain type="empty"/>
+      <selection multiLine="false" type="SingleValue"/>
+    </variableProperties>
+  </variable>
+</localVariables>
+<variableMappings/>
+<dataSources/>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:TableFunctionView" id="TableFunction_1" tableFunctionName="TF_FUZZY_EMPLOYEES">
+    <viewAttributes/>
+    <calculatedViewAttributes/>
+    <variableMapping xsi:type="Variable:VariableMapping">
+      <targetVariable name="INP_LASTNAMEFILTER"/>
+      <localVariable>IP_LASTNAME_FILTER</localVariable>
+    </variableMapping>
+  </calculationView>
+</calculationViews>
+
+<logicalModel id="TableFunction_1">
+  <attributes>
+    <attribute id="NAME_FIRST" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME.FIRST"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="NAME.FIRST"/>
+    </attribute>
+    <attribute id="EMPLOYEEID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMPLOYEEID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="EMPLOYEEID"/>
+    </attribute>
+    <attribute id="STREET" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="STREET"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="STREET"/>
+    </attribute>
+    <attribute id="NAME_LAST" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="NAME.LAST"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="NAME.LAST"/>
+    </attribute>
+    <attribute id="CITY" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CITY"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="CITY"/>
+    </attribute>
+    <attribute id="ADDRESSID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ADDRESSID"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="ADDRESSID"/>
+    </attribute>
+    <attribute id="EMAILADDRESS" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAILADDRESS"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="EMAILADDRESS"/>
+    </attribute>
+    <attribute id="POSTALCODE" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="POSTALCODE"/>
+      <keyMapping columnObjectName="TableFunction_1" columnName="POSTALCODE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+    
+  
+    <shape expanded="true" modelObjectName="TableFunction_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="117" y="209"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

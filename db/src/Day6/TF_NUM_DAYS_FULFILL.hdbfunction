@@ -1,0 +1,38 @@
+/*****************************
+Function details:
+Input - 
+    IP_FROM_CREATION_DATE and IP_TO_CREATION_DATE
+Logic - 
+    Uses WORKDAYS_BETWEEN SQL function to calculate the work days
+    Refers the TFACS table to identify the workdays
+Output - 
+    Returns a table.
+****************************/
+FUNCTION "TF_NUM_DAYS_FULFILL"(
+    IP_FROM_CREATION_DATE DATE,
+    IP_TO_CREATION_DATE DATE
+  ) 
+  RETURNS TABLE (
+    "PURCHASEORDERID" INTEGER,
+    "HISTORY_CREATEDAT" DATE,
+    "DELIVERYDATE" DATE,
+    "PRODUCT_PRODUCTID" NVARCHAR(10),
+    "GROSSAMOUNT" DECIMAL(15, 2),
+    "NUM_DAYS_FULFILL" INTEGER
+  ) 
+  LANGUAGE SQLSCRIPT 
+  SQL SECURITY INVOKER AS 
+BEGIN 
+  /*****************************
+  Write your function logic
+  ****************************/
+  RETURN
+  SELECT "PURCHASEORDERID",
+    "HISTORY_CREATEDAT",
+    "DELIVERYDATE",
+    "PRODUCT_PRODUCTID",
+    "GROSSAMOUNT",
+    WORKDAYS_BETWEEN('01', "HISTORY_CREATEDAT", "DELIVERYDATE") AS "NUM_DAYS_FULFILL"
+  FROM "CCV_Orders"
+  WHERE "HISTORY_CREATEDAT" BETWEEN :IP_FROM_CREATION_DATE AND :IP_TO_CREATION_DATE;
+END
